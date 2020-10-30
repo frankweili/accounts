@@ -20,12 +20,12 @@
 .wrapper{
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
+   
     height: 100vh;    //撑起整个页面
 }
 .content{
     overflow:auto;
-    border:black 1px solid;
+  
     flex-grow: 1;   //占据整部分
 }
 </style>
