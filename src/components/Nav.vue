@@ -24,6 +24,7 @@
 </script>
 
 <style lang="scss" scoped>
+@import "~@/assets/style/helper.scss";
 nav{
    
     display:flex;
@@ -42,7 +43,7 @@ align-items: center;
 }
 }
 > .item.selected{
-    color: blue;
+    color:$color-highlight;
 }
 }
 </style>
