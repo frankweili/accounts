@@ -1,7 +1,9 @@
 <template>
     <div>
-        labels
-        <Nav />
+        <Layout>
+           <p>labels
+           </p>
+       </Layout>
     </div>
 </template>
 
@@ -11,6 +13,6 @@
     }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
 
 </style>
