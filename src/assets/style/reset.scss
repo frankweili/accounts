@@ -1,8 +1,20 @@
 * {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 a {
   text-decoration: none;
   color: inherit;
+}
+button,
+input {
+  font: inherit;
+}
+:focus {
+  outline: none; //例如可以去掉边框线颜色
+}
+ol,
+ul {
+  list-style: none;
 }

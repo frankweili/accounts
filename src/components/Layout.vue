@@ -1,8 +1,7 @@
 <template>
-    <div class="wrapper">
- <div class="content">
-     <slot>
-     </slot>
+    <div class="layout-wrapper" :class="classPrefix && `${classPrefix}-wrapper`">
+ <div class="content" :class="classPrefix && `${classPrefix}-content`">
+     <slot/>
        <!--此标签会把写在  <Layout>
  </Layout>里面的内容自动传进来-->
  </div>
@@ -12,12 +11,14 @@
 
 <script lang="ts">
     export default {
-        
+        name:'Layout',
+        props:['classPrefix']
+
     }
 </script>
 
 <style lang="scss" scoped>
-.wrapper{
+.layout-wrapper{
     display: flex;
     flex-direction: column;
    
