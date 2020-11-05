@@ -23,7 +23,7 @@ import { Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class Tags extends Vue {
-  @Prop() dataSource: string[] | undefined;
+  @Prop(Array) dataSource: string[] | undefined;
   selectedTags: string[] = [];
 
   toggle(tag: string) {
@@ -33,6 +33,7 @@ export default class Tags extends Vue {
     } else {
       this.selectedTags.push(tag);
     }
+    this.$emit("update:value", this.selectedTags);
   }
   create() {
     const name = window.prompt("请输入");
@@ -40,7 +41,7 @@ export default class Tags extends Vue {
       window.alert("请重新输入");
       window.prompt("请输入");
     } else if (this.dataSource) {
-      this.$emit("update:dataSource", [...this.dataSource, name]); //出发一个事件，因为无法改父元素上的数据
+      this.$emit("update:dataSource", [...this.dataSource, name]); //触发一个事件，因为无法改父元素上的数据
     }
   }
 }
