@@ -25,7 +25,7 @@ import { Component, Watch } from "vue-property-decorator";
 
 window.localStorage.setItem("version", "0.0.1"); //设置的localstorage的版本号
 
-type Record = {
+type RecordItem = {
   tags: string[];
   notes: string;
   type: string;
@@ -36,11 +36,11 @@ type Record = {
 @Component({ components: { NumberPad, Types, Tags, Notes } })
 export default class Money extends Vue {
   tags = ["衣", "食", "住", "行"];
-  recordList: Record[] = JSON.parse(
+  recordList: RecordItem[] = JSON.parse(
     window.localStorage.getItem("recordList") || "[]"
   );
   //创建一个数组，将record放进去，之后在存到localStorage上,并设置初始值，初始值有可能为空
-  record: Record = {
+  record: RecordItem = {
     tags: [],
     notes: "",
     type: "-",
