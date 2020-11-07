@@ -4,7 +4,6 @@
     <Types :value.sync="record.type" />
     <Notes @update:value="onUpdateNotes" />
     <Tags :data-source.sync="tags" @update:value="onUpdateTags" />
-    {{ recordList }}
   </Layout>
 </template>
 
@@ -22,8 +21,12 @@ import Tags from "@/components/Money/Tags.vue";
 import Notes from "@/components/Money/Notes.vue";
 import { component } from "vue/types/umd";
 import { Component, Watch } from "vue-property-decorator";
+import tagListModel from "@/tagListModel";
 
 window.localStorage.setItem("version", "0.0.1"); //设置的localstorage的版本号
+
+const tagList = tagListModel.fetch();
+console.log(tagList);
 
 type RecordItem = {
   tags: string[];
@@ -35,7 +38,7 @@ type RecordItem = {
 
 @Component({ components: { NumberPad, Types, Tags, Notes } })
 export default class Money extends Vue {
-  tags = ["衣", "食", "住", "行"];
+  tags = tagList; //["衣", "食", "住", "行"];
   recordList: RecordItem[] = JSON.parse(
     window.localStorage.getItem("recordList") || "[]"
   );
