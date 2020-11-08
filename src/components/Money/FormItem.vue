@@ -1,7 +1,6 @@
 <template>
   <div>
     <label class="notes">
-      {{ value }}
       <span class="name">{{ filename }}</span>
       <input
         type="text"
@@ -19,7 +18,7 @@ import Vue from "vue";
 import { Component, Prop, Watch } from "vue-property-decorator";
 
 @Component
-export default class Notes extends Vue {
+export default class FormItem extends Vue {
   value = "";
   @Prop({ required: true }) filename!: string;
   @Prop() placeholder!: string;
@@ -39,14 +38,13 @@ export default class Notes extends Vue {
   font-size: 14px;
   padding-left: 16px;
 
-  background: #f5f5f5;
   display: flex;
   align-items: center;
   > .name {
     padding-right: 16px;
   }
   input {
-    height: 64px;
+    height: 40px;
     flex-grow: 1;
     padding-right: 16px;
     background: transparent;
