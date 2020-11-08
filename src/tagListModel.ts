@@ -1,5 +1,5 @@
 import { filter } from 'vue/types/umd';
-
+import createId from '@/lib/createId.ts'
 type RecordItem = {
     tags: string[];
     notes: string;
@@ -35,8 +35,9 @@ const tagListModel: TagListModel= {
   },
   create(name) {
     const names=this.data.map(item=>item.name)
-    if(names.indexOf(name)>=0){return 'duplicated'}
-    this.data.push({ id: name, name: name })
+    if (names.indexOf(name) >= 0) { return 'duplicated' }
+    const id =createId().toString()
+    this.data.push({ id, name: name })
     this.save()
     return 'success'
   },
@@ -66,7 +67,8 @@ const tagListModel: TagListModel= {
       }
     }
       this.data.splice(index, 1)
-      this.save()
+    this.save()
+    
       return true
     
   }

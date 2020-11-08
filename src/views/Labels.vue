@@ -44,6 +44,11 @@ export default class Labels extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.createTag-wrapper {
+  text-align: center;
+  padding: 16px;
+  margin-top: 44-16px;
+}
 .tags {
   background: white;
   font-size: 16px;
@@ -61,10 +66,5 @@ export default class Labels extends Vue {
       margin-right: 16px;
     }
   }
-}
-.createTag-wrapper {
-  text-align: center;
-  padding: 16x;
-  margin-top: 44--16px;
 }
 </style>
