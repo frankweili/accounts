@@ -6,7 +6,7 @@
         type="text"
         :placeholder="this.placeholder"
         :value="value"
-        @input="inPut"
+        @input="onValueChange($event.target.value)"
       />
       <!--  可以用v-model="value"代替以上两行代码   意思是:value="X" @input="X=$event.target.value"   -->
     </label>
@@ -19,13 +19,13 @@ import { Component, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class FormItem extends Vue {
-  value = "";
+  @Prop({ default: "" }) readonly value!: string;
   @Prop({ required: true }) filename!: string;
   @Prop() placeholder!: string;
-  inPut(event: KeyboardEvent) {
-    const input = event.target as HTMLInputElement;
-    this.value = input.value;
-  }
+  // inPut(event: KeyboardEvent) {
+  // const input = event.target as HTMLInputElement;
+  //this.value = input.value;
+  //}
   @Watch("value")
   onValueChange(value: string) {
     this.$emit("update:value", value);
