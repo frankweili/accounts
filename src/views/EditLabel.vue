@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import Button from "@/components/Button.vue";
-import tagListModel from "@/tagListModel";
+import tagListModel from "@/models/tagListModel";
 import Vue from "vue";
 import FormItem from "@/components/Money/FormItem.vue";
 import { Component } from "vue-property-decorator";
