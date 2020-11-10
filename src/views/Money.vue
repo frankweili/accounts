@@ -25,14 +25,10 @@ import NumberPad from "@/components/Money/NumberPad.vue";
 import Types from "@/components/Money/Types.vue";
 import Tags from "@/components/Money/Tags.vue";
 import FormItem from "@/components/Money/FormItem.vue";
-import { component } from "vue/types/umd";
-import { Component, Watch } from "vue-property-decorator";
-import tagListModel from "@/models/tagListModel";
-import recordListModel from "@/models/recordListModel";
+
+import { Component } from "vue-property-decorator";
 
 window.localStorage.setItem("version", "0.0.1"); //设置的localstorage的版本号
-
-const recordList = recordListModel.fetch();
 
 type RecordItem = {
   tags: string[];
@@ -45,7 +41,7 @@ type RecordItem = {
 @Component({ components: { NumberPad, Types, Tags, FormItem } })
 export default class Money extends Vue {
   tags = window.tagList; //["衣", "食", "住", "行"];
-  recordList: RecordItem[] = recordList;
+  recordList: RecordItem[] = window.recordList;
   //创建一个数组，将record放进去，之后在存到localStorage上,并设置初始值，初始值有可能为空
   record: RecordItem = {
     tags: [],
@@ -66,11 +62,7 @@ export default class Money extends Vue {
     this.record.tags = value; //子组件传入的数据，放到record上
   }
   saveRecord() {
-    recordListModel.create(this.record);
-  }
-  @Watch("recordList") //监听recordLIst的变化
-  onRecordListChange() {
-    recordListModel.save();
+    window.createRecord(this.record);
   }
 }
 </script>

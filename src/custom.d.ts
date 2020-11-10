@@ -26,5 +26,7 @@ interface Window{
   findTag: (id: string) => Tag |undefined;
   createTag: (name: string) => void;   //不返回，也就是没有返回值
   removeTag: (id: string) => boolean;
-  updateTag: (id: string,name: string) => 'success' | 'not found' | 'duplicated';
+  updateTag: (id: string, name: string) => 'success' | 'not found' | 'duplicated';
+  recordList: RecordItem[];
+  createRecord: (record: RecordItem) => void;
 }    //声明加在window上的属性
