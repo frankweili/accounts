@@ -24,4 +24,4 @@ type Tag = {
 interface Window{
   tagList: Tag[];
   createTag: (name: string) => void;   //不返回，也就是没有返回值
-}
+}    //声明加在window上的属性

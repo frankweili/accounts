@@ -6,12 +6,14 @@ import store from './store'
 import Nav from '@/components/Nav.vue'
 import Layout from '@/components/Layout.vue' //全局引入这个组件
 import Icon from '@/components/Icon.vue'
+import tagListModel from './models/tagListModel'
 
 Vue.component('Nav', Nav)
 Vue.component('Layout', Layout)  //全局引入这个组件
 Vue.component('Icon', Icon)
 Vue.config.productionTip = false
 
+window.tagList = tagListModel.fetch()       //定义到window上
 new Vue({
   router,
   store,

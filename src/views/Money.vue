@@ -33,7 +33,6 @@ import recordListModel from "@/models/recordListModel";
 window.localStorage.setItem("version", "0.0.1"); //设置的localstorage的版本号
 
 const recordList = recordListModel.fetch();
-const tagList = tagListModel.fetch();
 
 type RecordItem = {
   tags: string[];
@@ -45,7 +44,7 @@ type RecordItem = {
 
 @Component({ components: { NumberPad, Types, Tags, FormItem } })
 export default class Money extends Vue {
-  tags = tagList; //["衣", "食", "住", "行"];
+  tags = window.tagList; //["衣", "食", "住", "行"];
   recordList: RecordItem[] = recordList;
   //创建一个数组，将record放进去，之后在存到localStorage上,并设置初始值，初始值有可能为空
   record: RecordItem = {
