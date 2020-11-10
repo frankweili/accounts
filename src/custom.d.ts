@@ -23,5 +23,8 @@ type Tag = {
   
 interface Window{
   tagList: Tag[];
+  findTag: (id: string) => Tag |undefined;
   createTag: (name: string) => void;   //不返回，也就是没有返回值
+  removeTag: (id: string) => boolean;
+  updateTag: (id: string,name: string) => 'success' | 'not found' | 'duplicated';
 }    //声明加在window上的属性
