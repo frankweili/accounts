@@ -3,7 +3,7 @@ type RecordItem = {
     notes: string;
     type: string;
     amount: number;
-    createAt: Date | undefined; //类
+    createdAt: Date | undefined; //类
 }; //声明类型
   
 
@@ -30,3 +30,4 @@ interface Window{
   recordList: RecordItem[];
   createRecord: (record: RecordItem) => void;
 }    //声明加在window上的属性
+//.d.ts文件不需要引用，可以直接用，为全局引用

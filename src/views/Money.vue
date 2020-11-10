@@ -31,14 +31,6 @@ import store from "@/store/index2.ts";
 
 window.localStorage.setItem("version", "0.0.1"); //设置的localstorage的版本号
 
-type RecordItem = {
-  tags: string[];
-  notes: string;
-  type: string;
-  amount: number;
-  createAt: Date | undefined; //类
-}; //声明类型
-
 @Component({ components: { NumberPad, Types, Tags, FormItem } })
 export default class Money extends Vue {
   tags = store.tagList; //["衣", "食", "住", "行"];
@@ -49,7 +41,7 @@ export default class Money extends Vue {
     notes: "",
     type: "-",
     amount: 0,
-    createAt: undefined,
+    createdAt: undefined,
   }; //初始化，
   onUpdateAmount(value: string) {
     this.record.amount = parseFloat(value);
