@@ -27,6 +27,7 @@ import Tags from "@/components/Money/Tags.vue";
 import FormItem from "@/components/Money/FormItem.vue";
 
 import { Component } from "vue-property-decorator";
+import store from "@/store/index2.ts";
 
 window.localStorage.setItem("version", "0.0.1"); //设置的localstorage的版本号
 
@@ -40,8 +41,8 @@ type RecordItem = {
 
 @Component({ components: { NumberPad, Types, Tags, FormItem } })
 export default class Money extends Vue {
-  tags = window.tagList; //["衣", "食", "住", "行"];
-  recordList: RecordItem[] = window.recordList;
+  tags = store.tagList; //["衣", "食", "住", "行"];
+  recordList: RecordItem[] = store.recordList;
   //创建一个数组，将record放进去，之后在存到localStorage上,并设置初始值，初始值有可能为空
   record: RecordItem = {
     tags: [],
@@ -62,7 +63,7 @@ export default class Money extends Vue {
     this.record.tags = value; //子组件传入的数据，放到record上
   }
   saveRecord() {
-    window.createRecord(this.record);
+    store.createRecord(this.record);
   }
 }
 </script>
