@@ -5,7 +5,7 @@
     </div>
     <ul class="current">
       <li
-        v-for="tag in dataSource"
+        v-for="tag in tagList"
         :key="tag.id"
         :class="{ selceted: selectedTags.indexOf(tag) >= 0 }"
         @click="toggle(tag)"
@@ -19,11 +19,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component, Prop } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
+import store from "@/store/index2";
 
 @Component
 export default class Tags extends Vue {
-  @Prop(Array) dataSource: string[] | undefined;
+  tagList = store.fetchTags();
   selectedTags: string[] = [];
 
   toggle(tag: string) {
@@ -37,12 +38,10 @@ export default class Tags extends Vue {
   }
   create() {
     const name = window.prompt("请输入");
-    if (name === "") {
-      window.alert("请重新输入");
-      window.prompt("请输入");
-    } else if (this.dataSource) {
-      this.$emit("update:dataSource", [...this.dataSource, name]); //触发一个事件，因为无法改父元素上的数据
+    if (!name) {
+      return window.alert("标签名不能为空");
     }
+    store.createTag(name);
   }
 }
 </script>

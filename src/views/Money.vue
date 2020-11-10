@@ -9,7 +9,7 @@
         placeholder="请输入备注"
       />
     </div>
-    <Tags :data-source.sync="tags" @update:value="onUpdateTags" />
+    <Tags />
   </Layout>
 </template>
 
@@ -33,7 +33,6 @@ window.localStorage.setItem("version", "0.0.1"); //设置的localstorage的版�
 
 @Component({ components: { NumberPad, Types, Tags, FormItem } })
 export default class Money extends Vue {
-  tags = store.tagList; //["衣", "食", "住", "行"];
   recordList: RecordItem[] = store.recordList;
   //创建一个数组，将record放进去，之后在存到localStorage上,并设置初始值，初始值有可能为空
   record: RecordItem = {
@@ -49,10 +48,6 @@ export default class Money extends Vue {
   }
   onUpdateFormItem(value: string) {
     this.record.notes = value; //子组件传入的数据，放到record上
-  }
-
-  onUpdateTags(value: string[]) {
-    this.record.tags = value; //子组件传入的数据，放到record上
   }
   saveRecord() {
     store.createRecord(this.record);
