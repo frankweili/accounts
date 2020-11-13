@@ -15,6 +15,9 @@
 </template>
 
 <style lang="scss" scoped>
+::v-deep .interval-tabs-item {
+  height: 48px;
+}
 ::v-deep .type-tabs-item {
   background: white;
   &.selected {
