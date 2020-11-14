@@ -29,13 +29,13 @@ import FormItem from "@/components/Money/FormItem.vue";
 import recordTypeList from "@/constant/recordTypeList";
 
 import { Component } from "vue-property-decorator";
-import store from "@/store/index2.ts";
 
 window.localStorage.setItem("version", "0.0.1"); //设置的localstorage的版本号
 
-@Component({ components: { NumberPad, Tabs, Tags, FormItem } })
+@Component({
+  components: { NumberPad, Tabs, Tags, FormItem },
+})
 export default class Money extends Vue {
-  recordList: RecordItem[] = store.recordList;
   recordTypeList = recordTypeList;
   //创建一个数组，将record放进去，之后在存到localStorage上,并设置初始值，初始值有可能为空
   record: RecordItem = {
@@ -45,6 +45,12 @@ export default class Money extends Vue {
     amount: 0,
     createdAt: undefined,
   }; //初始化，
+  get recordList() {
+    return this.$store.state.recordList;
+  }
+  created() {
+    this.$store.commit("fetchRecords");
+  }
   onUpdateAmount(value: string) {
     this.record.amount = parseFloat(value);
     //子组件传入的数据，放到record上    parseFloat()函数解析一个参数（必要时先转换为字符串）并返回一个浮点数
@@ -53,7 +59,7 @@ export default class Money extends Vue {
     this.record.notes = value; //子组件传入的数据，放到record上
   }
   saveRecord() {
-    store.createRecord(this.record);
+    this.$store.commit("createRecord", this.record);
   }
 }
 </script>

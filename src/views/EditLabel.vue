@@ -8,7 +8,7 @@
     <div class="form-wrapper"></div>
     <FormItem
       @update:value="update"
-      :value="tag.name"
+      :value="currentTag.name"
       filename="标签"
       placeholder="请输入"
     />
@@ -22,29 +22,31 @@ import Button from "@/components/Button.vue";
 import Vue from "vue";
 import FormItem from "@/components/Money/FormItem.vue";
 import { Component } from "vue-property-decorator";
-import store from "@/store/index2.ts";
+
 @Component
-@Component({ components: { FormItem, Button } })
+@Component({
+  components: { FormItem, Button },
+})
 export default class EditLabel extends Vue {
-  tag?: Tag = undefined;
+  get currentTag() {
+    return this.$store.state.currentTag;
+  }
   created() {
-    this.tag = store.findTag(this.$route.params.id);
-    if (!this.tag) {
+    const id = this.$route.params.id;
+    this.$store.commit("fetchTags");
+    this.$store.commit("setCurrentTag", id);
+    if (!this.currentTag) {
       this.$router.replace("/404");
     }
   }
   update(name: string) {
-    if (this.tag) {
-      store.updateTag(this.tag.id, name);
+    if (this.currentTag) {
+      this.$store.commit("updateTag", { id: this.currentTag.id, name });
     }
   }
   remove() {
-    if (this.tag) {
-      if (store.removeTag(this.tag.id)) {
-        this.$router.back(); //返回到上一页}
-      } else {
-        window.alert("删除失败");
-      }
+    if (this.currentTag) {
+      this.$store.commit("removeTag", this.currentTag.id);
     }
   }
   goBack() {
