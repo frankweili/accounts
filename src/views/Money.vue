@@ -43,7 +43,6 @@ export default class Money extends Vue {
     notes: "",
     type: "-",
     amount: 0,
-    createdAt: undefined,
   }; //初始化，
   get recordList() {
     return this.$store.state.recordList;

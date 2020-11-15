@@ -3,9 +3,14 @@ type RecordItem = {
     notes: string;
     type: string;
     amount: number;
-    createdAt: Date | undefined; //类
+    createdAt?: string; //类
 }; //声明类型
   
+type RootState = {
+  recordList: RecordItem[];
+  tagList: Tag[];
+  currentTag?: Tag;
+}
 
 type Tag = {
     id: string;
