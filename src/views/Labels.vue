@@ -46,10 +46,12 @@ export default class Labels extends mixins(TagHelper) {
   margin-top: 44-16px;
 }
 .tags {
-  background: white;
+  border-radius: 20px;
+  background: #7A8B8B;
   font-size: 16px;
   padding-left: 16px;
   > .tag {
+    border-radius: 10px;
     min-height: 44px;
     display: flex;
     align-items: center;

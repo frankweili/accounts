@@ -84,6 +84,7 @@ export default class NumberPad extends Vue {
   .buttons {
     @extend %clearFix; //继承%cleraFix  相当于在buttons上面写了一个类clearfix
     > button {
+      border-radius: 20px;
       width: 25%;
       height: 64px;
       background: transparent;
@@ -95,7 +96,7 @@ export default class NumberPad extends Vue {
       &.zero {
         width: 25 * 2%;
       }
-      $bh: #f2f2f2;
+      $bh: #6E8B3D; // #f2f2f2
       &:nth-child(1) {
         background: $bh;
       }
@@ -125,7 +126,7 @@ export default class NumberPad extends Vue {
         background: darken($bh, 4 * 5%);
       }
       &:nth-child(12) {
-        background: darken($bh, 4 * 6%);
+        background: yellow;
       }
     }
   }

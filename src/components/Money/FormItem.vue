@@ -35,15 +35,19 @@ export default class FormItem extends Vue {
 
 <style lang="scss" scoped>
 .notes {
+  border-radius: 20px;
+  background: #68838B;
   font-size: 14px;
   padding-left: 16px;
 
   display: flex;
   align-items: center;
   > .name {
+    color: white;
     padding-right: 16px;
   }
   input {
+    color: white;
     height: 40px;
     flex-grow: 1;
     padding-right: 16px;

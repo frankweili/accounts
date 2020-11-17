@@ -61,7 +61,9 @@ export default class EditLabel extends Vue {
   padding: 16px;
   margin-top: 44-16px;
 }
+
 .navBar {
+  border-radius: 20px;
   text-align: center;
   font-size: 16px;
   padding: 12px 16px;

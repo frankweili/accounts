@@ -38,7 +38,8 @@ export default class Types extends Vue {
 <style lang="scss" scoped>
 @import "~@/assets/style/helper.scss";
 .tabs {
-  background: #c4c4c4;
+  border-radius: 20px;
+  background: #FFEC8B;
   font-size: 24px;
   display: flex;
   text-align: center;

@@ -5,12 +5,12 @@
     <Tabs :dataSource="recordTypeList" :value.sync="record.type" />
     <div class="notes">
       <FormItem
-        @update:value="onUpdateFormItem"
-        filename="备注"
+        :value.sync="record.notes"
+        filename="备注 :"
         placeholder="请输入备注"
       />
     </div>
-    <Tags />
+    <Tags @update:value="record.tags = $event" />
   </Layout>
 </template>
 
@@ -36,17 +36,18 @@ window.localStorage.setItem("version", "0.0.1"); //设置的localstorage的版�
   components: { NumberPad, Tabs, Tags, FormItem },
 })
 export default class Money extends Vue {
-  recordTypeList = recordTypeList;
   //创建一个数组，将record放进去，之后在存到localStorage上,并设置初始值，初始值有可能为空
+
+  get recordList() {
+    return this.$store.state.recordList;
+  }
+  recordTypeList = recordTypeList;
   record: RecordItem = {
     tags: [],
     notes: "",
     type: "-",
     amount: 0,
   }; //初始化，
-  get recordList() {
-    return this.$store.state.recordList;
-  }
   created() {
     this.$store.commit("fetchRecords");
   }
@@ -58,7 +59,14 @@ export default class Money extends Vue {
     this.record.notes = value; //子组件传入的数据，放到record上
   }
   saveRecord() {
+    if (!this.record.tags || this.record.tags.length === 0) {
+      return window.alert("请至少选择一个标签");
+    }
     this.$store.commit("createRecord", this.record);
+    if (this.$store.state.createRecordError === null) {
+      window.alert("已保存");
+      this.record.notes = "";
+    }
   }
 }
 </script>
